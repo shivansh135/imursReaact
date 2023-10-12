@@ -1,0 +1,87 @@
+.button-secondary {
+    align-items: center;
+    border: 1px solid;
+    border-color: #333332;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px 40px;
+    position: relative;
+    width: 200px;
+  }
+
+  .button-secondary .red{
+    background-color: var(--persian-red);
+  }
+  
+  .button-secondary .text-wrapper {
+    color: #333332;
+    font-family: "HK Grotesk-SemiBoldLegacy", Helvetica;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: normal;
+    margin-top: -1px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  
+  .button-secondaryfreight-big-pro
+ {
+    background-color: #b73e33;
+    border-color: #b73e33;
+  }
+  
+  .button-secondary:hover .text-wrapper {
+    color: #f7f5f2;
+    background-color: #b73e33;
+
+  }
+  .button-secondary:hover {
+    background-color: #b73e33;
+    border-color: #b73e33;
+
+  }
+  @media screen and (max-width: 768px) {
+    .button-secondary {
+        align-items: center;
+        border: 1px solid;
+        border-color: var(--newjet-black);
+        display: inline-flex;
+        gap: 20px;
+        justify-content: center;
+        padding: 10px 20px;
+        position: relative;
+        width: 100px;
+      }
+      
+      .button-secondary .text-wrapper {
+        color: var(--newjet-black);
+        font-family: "HK Grotesk-SemiBoldLegacy", Helvetica;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0;
+        line-height: normal;
+        margin-top: -1px;
+        position: relative;
+        text-align: center;
+        white-space: nowrap;
+        width: fit-content;
+      }
+      .center{
+        margin: auto;
+      }
+      .hidden{
+        display: none;
+      }
+      
+}
+
+@media screen and (max-width: 480px) {
+    .button-secondary .text-wrapper {
+        font-size: 12px; /* Further adjust font size for even smaller screens */
+    }
+}
+
