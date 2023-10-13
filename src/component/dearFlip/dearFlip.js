@@ -51,7 +51,7 @@ class Flipbook extends Component {
             hard: "none",
             shadowOpacity: 0,
             allControls: "",
-            pageMode: 2,
+            pageMode: DFLIP.PAGE_MODE.DOUBLE ,
           };
         `;
 
