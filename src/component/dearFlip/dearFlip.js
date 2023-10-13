@@ -82,9 +82,6 @@ class Flipbook extends Component {
   }
 
   render() {
-    if (!this.state.scriptsLoaded) {
-      return <div>Loading...</div>; // or any loading indicator you prefer
-    }
 
     return (
       <div>
