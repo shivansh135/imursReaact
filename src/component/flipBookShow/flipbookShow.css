@@ -16,7 +16,7 @@
     position: absolute;
     z-index: 999;
     top: 0;
-    scale: 1.1;
+    scale: 1.01;
 }
 
 .flipbook-container .flipbook {
@@ -82,8 +82,8 @@
     .absolute{
         position: absolute;
         z-index: 999;
-        top: 100px;
-        scale: 1.5;
+        
+        scale: 1;
     }
     .flipbook-container .flipbook {
         width: 210px;

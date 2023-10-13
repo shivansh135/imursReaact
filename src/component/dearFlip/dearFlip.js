@@ -1,5 +1,3 @@
-/* global DFlip */
-
 import React, { Component } from 'react';
 
 class Flipbook extends Component {
@@ -18,46 +16,64 @@ class Flipbook extends Component {
   }
 
   loadScripts() {
-    // Load external scripts
-    const script1 = document.createElement('script');
-    script1.src = '/dflip/js/libs/jquery.min.js';
-    script1.type = 'text/javascript';
-    document.head.appendChild(script1);
+    const loadScript = (src, type) => {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.type = type;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    };
 
-    const script2 = document.createElement('script');
-    script2.src = '/dflip/js/dflip.min.js';
-    script2.type = 'text/javascript';
-    script2.onload = this.initializeFlipbook; // Call initialization function once the script is loaded
-    document.head.appendChild(script2);
+    // Load script 1
+    loadScript('/dflip/js/libs/jquery.min.js', 'text/javascript')
+      .then(() => {
+        // Script 1 has loaded successfully
+        // Now load script 2
+        return loadScript('/dflip/js/dflip.min.js', 'text/javascript');
+      })
+      .then(() => {
+        // Script 2 has loaded successfully
+        // Load and initialize script 3
+        const script3 = document.createElement('script');
+        script3.className = 'df-shortcode-script';
+        script3.type = 'text/javascript';
+        script3.innerHTML = `
+          var option_flipbook = {
+            source: '/download?fileId={pdfId}',
+            "overwritePDFOutline": "true",
+            autoEnableOutline: "false",
+            forceFit: true,
+            outline: [],
+            color3DCover: "#fff",
+            hard: "none",
+            shadowOpacity: 0,
+            allControls: "",
+            pageMode: 2,
+          };
+        `;
 
-    const script3 = document.createElement('script');
-    script3.className = 'df-shortcode-script';
-    script3.type = 'text/javascript';
-    script3.innerHTML = `var option_flipbook = {
-        source:'/download?fileId={pdfId}',
-        "overwritePDFOutline": "true",
-      autoEnableOutline: "false",
-      forceFit:true,
-      outline:[],
-      color3DCover:"#f7f5f2",
-      hard: "none",
-      shadowOpacity: 0,
-      allControls: "",
-    };`;
-    script2.onload = this.initializeFlipbook; // Call initialization function once the script is loaded
-    document.head.appendChild(script3);
+        // Call initialization function once script 3 is loaded
+        script3.onload = this.initializeFlipbook;
+        document.head.appendChild(script3);
+      })
+      .catch((error) => {
+        console.error('Script loading failed:', error);
+      });
   }
 
-//   initializeFlipbook() {
-//     // JavaScript code to initialize the flipbook can go here
-//     // Ensure the required libraries are properly loaded
-//     window.addEventListener('load', function () {
-//       const myFlipbook = new DFlip('._df_book', {
-//         source: 'location of pdf.pdf'
-//         // Additional configuration options here
-//       });
-//     });
-//   }
+  // initializeFlipbook() {
+  //   // JavaScript code to initialize the flipbook can go here
+  //   // Ensure the required libraries are properly loaded
+  //   window.addEventListener('load', function () {
+  //     const myFlipbook = new DFlip('._df_book', {
+  //       source: 'location of pdf.pdf'
+  //       // Additional configuration options here
+  //     });
+  //   });
+  // }
 
   render() {
     return (
