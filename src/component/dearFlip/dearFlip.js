@@ -78,7 +78,7 @@ class Flipbook extends Component {
   render() {
     return (
       <div>
-        <div className="_df_book" id="flipbook" source="Print_DikshaUtkarsh.pdf"></div>
+        <div className="_df_book" id="flipbook" pageMode='2' source="Print_DikshaUtkarsh.pdf"></div>
       </div>
     );
   }
