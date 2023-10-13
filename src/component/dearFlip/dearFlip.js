@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class Flipbook extends Component {
+  constructor() {
+    super();
+    this.state = {
+      scriptsLoaded: false,
+    };
+  }
+
   componentDidMount() {
     this.loadStyles();
     this.loadScripts();
@@ -51,7 +58,7 @@ class Flipbook extends Component {
             hard: "none",
             shadowOpacity: 0,
             allControls: "",
-            pageMode: DFLIP.PAGE_MODE.DOUBLE ,
+            pageMode: DFLIP.PAGE_MODE.DOUBLE,
           };
         `;
 
@@ -59,23 +66,26 @@ class Flipbook extends Component {
         script3.onload = this.initializeFlipbook;
         document.head.appendChild(script3);
       })
+      .then(() => {
+        // All scripts have loaded successfully
+        this.setState({ scriptsLoaded: true });
+      })
       .catch((error) => {
         console.error('Script loading failed:', error);
       });
   }
 
-  // initializeFlipbook() {
-  //   // JavaScript code to initialize the flipbook can go here
-  //   // Ensure the required libraries are properly loaded
-  //   window.addEventListener('load', function () {
-  //     const myFlipbook = new DFlip('._df_book', {
-  //       source: 'location of pdf.pdf'
-  //       // Additional configuration options here
-  //     });
-  //   });
-  // }
+  initializeFlipbook() {
+    // JavaScript code to initialize the flipbook can go here
+    // Ensure the required libraries are properly loaded
+   
+  }
 
   render() {
+    if (!this.state.scriptsLoaded) {
+      return <div>Loading...</div>; // or any loading indicator you prefer
+    }
+
     return (
       <div>
         <div className="_df_book" id="flipbook" pageMode='2' source="Print_DikshaUtkarsh.pdf"></div>
